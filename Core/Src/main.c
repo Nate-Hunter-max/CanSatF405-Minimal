@@ -336,19 +336,24 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, LED2_Pin|LED1_Pin|GPIO_PIN_15|WQ_NSS_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, LED2_Pin|LED1_Pin|GPIO_PIN_15, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, LED_ERR_Pin|MS_NSS_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, KX_NSS_Pin|KX2_NSS_Pin|WQ_NSS_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, RESET_LORA_Pin|LORA_NSS_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(LED_ERR_GPIO_Port, LED_ERR_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(LIS_NSS_GPIO_Port, LIS_NSS_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(MS_NSS_GPIO_Port, MS_NSS_Pin, GPIO_PIN_SET);
 
-  /*Configure GPIO pins : LED2_Pin LED1_Pin PC15 WQ_NSS_Pin */
-  GPIO_InitStruct.Pin = LED2_Pin|LED1_Pin|GPIO_PIN_15|WQ_NSS_Pin;
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOB, RESET_LORA_Pin|LORA_NSS_Pin|LIS_NSS_Pin, GPIO_PIN_SET);
+
+  /*Configure GPIO pins : LED2_Pin LED1_Pin PC15 KX_NSS_Pin
+                           KX2_NSS_Pin WQ_NSS_Pin */
+  GPIO_InitStruct.Pin = LED2_Pin|LED1_Pin|GPIO_PIN_15|KX_NSS_Pin
+                          |KX2_NSS_Pin|WQ_NSS_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
