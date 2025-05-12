@@ -25,7 +25,7 @@ struct ImuData {
 	float accelData[3];     ///< LSM6 accel (mG)
 	float gyroData[3];      ///< LSM6 gyro (mdps)
 	int32_t altitude;       ///< Altitude (zero at start, cm)
-	uint32_t flags;         ///< Flags (0|0|0|0|Land|ResSys|Eject|Start)
+	uint32_t flags;         ///< Flags (0|0|0|0|0|Land|Eject|Start)
 	uint32_t press0;        ///< MS56 pressure at 0 Alt (Pa)
 	float vectAbs;          ///< Absolute value of accel vector
 	uint32_t wqAdr;         ///< WQ address
