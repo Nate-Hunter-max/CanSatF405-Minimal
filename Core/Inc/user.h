@@ -20,8 +20,6 @@
 #define FRAME_SIZE 56			//frame for LoRa & WQ, bytes
 #define START_TH 10      //Set start flag if altitude > [this val], cm
 #define EJECT_TH 240			//Set EJC flag if adc_val < [this_val], 8bit
-#define RS_ANGLE 30			//RS Servo angle,<=120 deg
-#define RS_DELAY 3000			//Time while RS stays active (TEST ONLY), ms
 
 /*___________________________________Bit Macro___________________________________*/
 #define bitRead(value, bit) (((value) >> (bit)) & 0x01)
