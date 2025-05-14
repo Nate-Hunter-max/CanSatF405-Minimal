@@ -71,7 +71,7 @@ static LoRaConfig loraCfg = {
 static LoRa_HandleTypeDef lora = { .spi = &hspi1, .NSS_Port = LORA_NSS_GPIO_Port, .NSS_Pin = LORA_NSS_Pin, };
 
 /** @brief W25Q128 struct */
-//static W25Qx_Device wq = { .spi = &hspi1, .cs_port = WQ_NSS_GPIO_Port, .cs_pin = WQ_NSS_Pin, .capacity = 16777216 };
+static W25Qx_Device wq = { .spi = &hspi1, .cs_port = WQ_NSS_GPIO_Port, .cs_pin = WQ_NSS_Pin, .capacity = 16777216 };
 
 /** @brief Forward declarations */
 void Error(uint8_t errCode);
@@ -108,11 +108,10 @@ static void init_state(void) {
 			errorCode = 3;
 		if (!LoRa_Init(&lora))
 			errorCode = 4;
-		if (!microSD_Init()){
-			errorCode = 0;
-		}
-//		if (!W25Qx_Init(&wq))
-//			errorCode = 6;
+		if (!microSD_Init())
+			errorCode = 0; // CODE - 5
+		if (!W25Qx_Init(&wq))
+			errorCode = 6;
 
 		if (!errorCode) {
 			MS5611_SetOS(MS56_OSR_4096, MS56_OSR_4096);
@@ -168,7 +167,7 @@ static void lora_wait_state(void) {
 					break;
 				case '3':
 					LoRa_Transmit(&lora, "Erase All\n", 10);
-					//W25Qx_EraseChip(&wq);
+					W25Qx_EraseChip(&wq);
 					microSD_RemoveFile(SD_FILENAME);
 					microSD_RemoveFile(SD_FILENAME_WQ);
 					LoRa_Transmit(&lora, "Done\n", 5);
@@ -240,7 +239,7 @@ static void dump_state(void) {
 	uint8_t buf[FRAME_SIZE];
 	for (uint32_t addr = 0; addr < 0xFFFFFF; addr += FRAME_SIZE) {
 		FlashLED(LED2_Pin);
-		//W25Qx_ReadData(&wq, addr, buf, FRAME_SIZE);
+		W25Qx_ReadData(&wq, addr, buf, FRAME_SIZE);
 		if (buf[0] == 0xFF && buf[1] == 0xFF && buf[2] == 0xFF && buf[3] == 0xFF)
 			break;
 		LoRa_Transmit(&lora, buf, FRAME_SIZE);
@@ -300,7 +299,7 @@ void ImuGetAll(struct ImuData *imuData) {
 void ImuSaveAll(struct ImuData *imuData) {
 	FlashLED(LED2_Pin);
 	LoRa_Transmit(&lora, imuData, FRAME_SIZE);
-	//W25Qx_WriteData(&wq, imuData->wqAdr, imuData, FRAME_SIZE);
+	W25Qx_WriteData(&wq, imuData->wqAdr, imuData, FRAME_SIZE);
 	imuData->wqAdr += FRAME_SIZE;
 	FlashLED(LED1_Pin);
 	if (microSD_Write(imuData, FRAME_SIZE, SD_FILENAME) != FR_OK) {

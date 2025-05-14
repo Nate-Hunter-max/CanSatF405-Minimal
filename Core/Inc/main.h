@@ -68,6 +68,8 @@ void Error_Handler(void);
 #define KX2_NSS_GPIO_Port GPIOC
 #define LED_ERR_Pin GPIO_PIN_0
 #define LED_ERR_GPIO_Port GPIOA
+#define WQ_HOR_Pin GPIO_PIN_4
+#define WQ_HOR_GPIO_Port GPIOA
 #define WQ_NSS_Pin GPIO_PIN_4
 #define WQ_NSS_GPIO_Port GPIOC
 #define MS_NSS_Pin GPIO_PIN_9

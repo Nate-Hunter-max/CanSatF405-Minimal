@@ -9,7 +9,7 @@
 #define INC_USER_H_
 
 /*___________________________________Settings___________________________________*/
-#define TEAM_NAME "SHARAGA_FOREVER!"  //Team name
+#define TEAM_NAME "FODIATORS"  //Team name
 #define SD_FILENAME "gg.wp"						//microSD file name, BIN content
 #define SD_FILENAME_WQ "gg.wq"				//microSD memory dump file name, BIN content
 #define DATA_PERIOD 85								//Data update period, ms
