@@ -46,7 +46,8 @@ extern "C" {
 
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
-#define USE_I2C
+#define LSM6_USE_I2C
+#define LIS3_USE_I2C
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/
