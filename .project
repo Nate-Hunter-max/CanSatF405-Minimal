@@ -29,11 +29,4 @@
 		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>Src</name>
-			<type>2</type>
-			<locationURI>WORKSPACE_LOC/workspace_1.18.1.zip_expanded/STM32_Libs/Src</locationURI>
-		</link>
-	</linkedResources>
 </projectDescription>
