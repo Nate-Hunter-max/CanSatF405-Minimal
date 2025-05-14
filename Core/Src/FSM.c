@@ -121,7 +121,7 @@ static void init_state(void) {
 			LSM6_ConfigAG(LSM6_ACCEL_16G | LSM6_CFG_12_5_Hz, LSM6_GYRO_2000DPS | LSM6_CFG_12_5_Hz);
 			CB_Init(&cbPress);
 			imuData.wqAdr = 0;
-			currentState = MAIN;
+			currentState = LORA_WAIT;
 		} else {
 			Error(errorCode);
 		}
